@@ -10,24 +10,34 @@ extends Control
 ## Reference to the timer
 @export var timer : Timer
 
-## Current amount of stardust in storage
-var stardust : int = 0
+##reference to the user interface
+@export var user_interface : UserInterface
+## View reference (this took me 1 hour to fix istg)
+@export var view : UserInterface.Views
+
 
 
 ## ok so i am kinda following a tutorial which makes sense because I have never used godot outside of 1 project from like 3 years ago so im basically a noob
-## I need to make this unique later also flip the documentation for now ill do it later
+## I need to make this unique later also flip the documentation for now ill do it later (foreshadowing) (mistake)
 func _ready() -> void:
 	update_label_text()
+	
+	visible = true
+	
+	user_interface.navigation_requested.connect(_on_navigation_request)
 
-
-
-func create_stardust() -> void:
-	stardust += 1
+## temp function to update the label
+func _process(_delta: float) -> void:
 	update_label_text()
+
+
+## creates stardust and stores it
+func create_stardust() -> void:
+	Game.ref.data.stardust += 1
 
 
 func update_label_text() -> void:
-	label.text = "Stardust : %s" % format_number(stardust)
+	label.text = "Stardust : %s" % format_number(Game.ref.data.stardust)
 
 func begin_generating_stardust() -> void:
 	timer.start()
@@ -41,6 +51,17 @@ func _on_button_pressed() -> void:
 func _on_timer_timeout() -> void:
 	create_stardust()
 
+## Watch for navigation requests and react accordingly
+func _on_navigation_request(requested_view : UserInterface.Views ) -> void:
+	if requested_view == view:
+		visible = true
+		return
+	
+	visible = false
+
+
+
+## number shortener after this point
 func format_number(value: int) -> String:
 	if value <1000:
 		return str(value)
