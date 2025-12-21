@@ -3,8 +3,6 @@ extends Control
 ## Generaotr prototype creating stardust every second
 
 
-## Reference to the label displaying the current about of stardust in storage
-@export var label : Label
 ## Reference to the button starting the generation
 @export var button : Button
 ## Reference to the timer
@@ -20,24 +18,14 @@ extends Control
 ## ok so i am kinda following a tutorial which makes sense because I have never used godot outside of 1 project from like 3 years ago so im basically a noob
 ## I need to make this unique later also flip the documentation for now ill do it later (foreshadowing) (mistake)
 func _ready() -> void:
-	update_label_text()
-	
 	visible = true
 	
 	user_interface.navigation_requested.connect(_on_navigation_request)
 
-## temp function to update the label
-func _process(_delta: float) -> void:
-	update_label_text()
-
 
 ## creates stardust and stores it
 func create_stardust() -> void:
-	Game.ref.data.stardust += 1
-
-
-func update_label_text() -> void:
-	label.text = "Stardust : %s" % format_number(Game.ref.data.stardust)
+	HandlerStardust.ref.create_stardust(1)
 
 func begin_generating_stardust() -> void:
 	timer.start()
