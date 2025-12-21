@@ -21,3 +21,4 @@ func update_text(_quantity : int = -1) -> void:
 ## BAHAHAHAHHAHA
 ## what
 ## wait will the reviewer guy see this
+## idk
