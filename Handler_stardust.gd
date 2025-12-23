@@ -32,3 +32,10 @@ func consume_stardust(quantity : int) -> Error:
 	Game.ref.data.stardust -= quantity
 	stardust_consumed.emit(quantity)
 	return Error.OK
+
+func trigger_clicker() -> void:
+	var quantity : int = 1
+	# Add 1 extra point per upgrade level
+	quantity += Game.ref.data.up01_level
+
+	create_stardust(quantity)
