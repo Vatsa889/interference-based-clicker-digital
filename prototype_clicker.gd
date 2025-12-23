@@ -21,7 +21,7 @@ func _ready() -> void: # determine the stardust value when launched
 
 ## creates stardust
 func create_stardust() -> void: # to create the shortest function, function syntax, name of the function, parenthase, and colon to begin the indent block
-	HandlerStardust.ref.create_stardust(click_value)
+	HandlerStardust.ref.trigger_clicker()
 
 ## triggered when the create stardust button is pressed
 func _on_button_pressed() -> void:
