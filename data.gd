@@ -4,3 +4,5 @@ extends Resource
 
 ## current amount of stardust available
 @export var stardust : int = 0
+## level of the first clicker upgrade
+@export var up01_level : int = 0
