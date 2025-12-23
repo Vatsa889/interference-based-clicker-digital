@@ -12,7 +12,7 @@ enum Views {
 
 ## emitted when something requested navigation, includes the view target
 signal navigation_requested(view : Views)
-## I fixed it, I am happy now
+## I fixed it I am sad now
 
 
 ## triggered when the prototype generator link is clicked
