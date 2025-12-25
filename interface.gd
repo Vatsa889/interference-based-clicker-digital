@@ -7,6 +7,7 @@ extends Control
 enum Views {
 	PROTOTYPE_GENERATOR,
 	PROTOTYPE_CLICKER,
+	PROTOTYPE_UPGRADES,
 }
 
 
@@ -22,3 +23,7 @@ func _on_prototypegeneratorlink_pressed() -> void:
 ## triggered when the prototype clicker link is clicked
 func _on_prototypeclickerlink_pressed() -> void:
 	navigation_requested.emit(Views.PROTOTYPE_CLICKER)
+
+## triggered when the prototype upgrades link is clicked
+func _on_prototypeupgradeslink_pressed() -> void:
+	navigation_requested.emit(Views.PROTOTYPE_UPGRADES)
