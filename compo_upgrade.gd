@@ -28,7 +28,7 @@ func update_title() -> void:
 	label_title.text = "%s (lvl %s)" % [upgrade.title, upgrade.level]
 
 func update_description() -> void:
-	button_purchase.text = upgrade.description()
+	label_description.text = upgrade.description()
 
 func update_button() -> void:
 	button_purchase.text = "Purchase (%s)" % upgrade.current_cost
@@ -45,4 +45,3 @@ func _on_leveled_up() -> void:
 
 func _on_button_pressed() -> void:
 	upgrade.level_up()
-
