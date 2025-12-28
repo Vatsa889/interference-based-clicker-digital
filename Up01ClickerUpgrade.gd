@@ -1,5 +1,4 @@
 class_name Up01ClickerUpgrade
-extends Node
 
 signal leveled_up
 
@@ -37,3 +36,4 @@ func level_up() -> void:
 		Game.ref.data.up01_level = level #Save to data
 		calculate_cost()
 		leveled_up.emit()
+ 
