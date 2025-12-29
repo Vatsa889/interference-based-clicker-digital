@@ -5,7 +5,7 @@ extends PanelContainer
 @export var label_description : RichTextLabel
 @export var button_purchase : Button
 
-var upgrade : Up01ClickerUpgrade
+var upgrade : Upgrade
 
 func _ready() -> void:
 	## Initiallizes the specific upgrade logic
