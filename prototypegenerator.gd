@@ -1,5 +1,5 @@
 class_name PrototypeGenerator
-extends Control
+extends View
 ## Generaotr prototype creating stardust every second
 
 
@@ -8,19 +8,12 @@ extends Control
 ## Reference to the timer
 @export var timer : Timer
 
-##reference to the user interface
-@export var user_interface : UserInterface
-## View reference (this took me 1 hour to fix istg)
-@export var view : UserInterface.Views
-
 
 
 ## ok so i am kinda following a tutorial which makes sense because I have never used godot outside of 1 project from like 3 years ago so im basically a noob
 ## I need to make this unique later also flip the documentation for now ill do it later (foreshadowing) (mistake)
 func _ready() -> void:
-	visible = true
-	
-	user_interface.navigation_requested.connect(_on_navigation_request)
+	super._ready()
 
 
 ## creates stardust and stores it
@@ -38,14 +31,6 @@ func _on_button_pressed() -> void:
 
 func _on_timer_timeout() -> void:
 	create_stardust()
-
-## Watch for navigation requests and react accordingly
-func _on_navigation_request(requested_view : UserInterface.Views ) -> void:
-	if requested_view == view:
-		visible = true
-		return
-	
-	visible = false
 
 
 
