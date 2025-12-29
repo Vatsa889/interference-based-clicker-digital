@@ -1,39 +1,39 @@
 class_name Up01ClickerUpgrade
-
-signal leveled_up
-
-var level : int = 0
-var title : String = "Clicker upgrade"
-var base_cost : int = 5
-var current_cost : int = 0
+extends Upgrade
 
 func _init() -> void:
-	# function to load level save data
-	level = Game.ref.data.up01_level
+	# Initialize the values defined in the parent class
+	title = "Clicker Upgrade"
+	base_cost = 5
 	calculate_cost()
+	
+	# Initialize saved level data
+	level = Game.ref.data.up01_level
 
-## Returns the description with the current effect
+# Override the parent description method
 func description() -> String:
-	var desc : String = "increases stardust created by the clicker.\n"
-	desc += "Effect: +1 Starust per level"
+	var desc : String = "Increases Stardust per click.\n"
+	desc += "Effect: +1 Stardust per level\n"
+	desc += "Cost: " + str(cost)
 	return desc
 
-## level based cost calculator, uses exponential growth
+# Override the parent cost calculation
 func calculate_cost() -> void:
-	current_cost = int(base_cost * pow(1.5, level))
+	# Note: We use 'cost' now, not 'current_cost'
+	cost = int(base_cost * pow(1.5, level))
 
-## gives true if the player has enough stardust to upgrade
+# Override the parent afford check
 func can_afford() -> bool:
-	if HandlerStardust.ref.stardust() >= current_cost:
+	# FIXED: Indentation is now tabs, and variable is 'cost'
+	if Game.ref.data.stardust >= cost:
 		return true
 	return false
 
-##
+# Override the parent purchase logic
 func level_up() -> void:
-	var error = HandlerStardust.ref.consume_stardust(current_cost)
+	var error = HandlerStardust.ref.consume_stardust(cost)
 	if not error:
 		level += 1
-		Game.ref.data.up01_level = level #Save to data
+		Game.ref.data.up01_level = level
 		calculate_cost()
 		leveled_up.emit()
- 
