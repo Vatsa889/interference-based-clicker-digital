@@ -1,11 +1,6 @@
 class_name prototypeclicker
-extends Control
+extends View
 ## A clicker prototype that creates stardust
-
-##reference to the user interface
-@export var user_interface : UserInterface
-## View reference
-@export var view : UserInterface.Views
 
 ## the next 3 lines are a part of the shop
 @export var upgrade_label : Label # Link this to your new upgrade button label
@@ -15,9 +10,7 @@ var upgrade_cost : int = 10 # Tracks how much the upgrade costs
 
 
 func _ready() -> void: # determine the stardust value when launched
-	visible = false
-	
-	user_interface.navigation_requested.connect(_on_navigation_request)
+	super._ready() # Call parent setup
 
 ## creates stardust
 func create_stardust() -> void: # to create the shortest function, function syntax, name of the function, parenthase, and colon to begin the indent block
